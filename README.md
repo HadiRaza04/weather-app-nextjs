@@ -12,3 +12,6 @@ You can visit weather app by clicking <a href="https://weatherapp04.vercel.app/"
 ## Key features
 1) In this app you can search weather details by searching city name.
 2)  You can find your current location weather details by clicking on location button on the top right of the navbar.
+
+## Project Image
+![Project Image](project-image.png)
