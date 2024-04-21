@@ -9,11 +9,12 @@ import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
 import { meterToKilometers } from "@/utils/metersToKilometers";
 import axios from "axios";
-import { format, fromUnixTime, parseISO } from "date-fns";
+import { format, fromUnixTime } from "date-fns";
 import { useQuery } from "react-query";
 import { loadingCityAtom, placeAtom } from "./atom";
 import { useAtom } from "jotai";
 import {  useEffect } from "react";
+import parseISO from "date-fns/parseISO";
 
 // https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56
 
@@ -91,7 +92,7 @@ export default function Home() {
   
 
   const firstData = data?.list[0]
-  console.log("data", data);
+  // console.log("data", data);
 
   const uniqueDates = [
     ...new Set(
@@ -208,8 +209,10 @@ export default function Home() {
                   key={i}
                   description={d?.weather[0].description ?? ""}
                   weatherIcon={d?.weather[0].icon ?? "01d"}
-                  date={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
+                  date={format(parseISO(d?.dt_txt ?? ''), "DD.MM")}
+                  // date={d?.dt_txt ?? ""}
                   day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
+                  // day={d?.dt_txt ?? ""}
                   feels_like={d?.main.feels_like ?? 0}
                   temp={d?.main.temp ?? 0}
                   temp_max={d?.main.temp_max ?? 0}
